@@ -18,7 +18,11 @@ var dragging = false;
 // start animation on a canvas
 function start(idCanvas)
 {
-    // initialise the canvas id (second parameter is fps)
+    var i = 0,
+      pos;
+
+    points = points || [];
+  // initialise the canvas id (second parameter is fps)
     jc.clear(idCanvas);
     jc.start(idCanvas,25);
     // set up the dial 
@@ -34,7 +38,11 @@ function start(idCanvas)
     //
     // set up the points
     //points = [jc.circle(pos[0]+offsets[0],pos[1]+offsets[1],0,'rgba(128,128,128,0.5)',1) for each (pos in pos_adj)];
-    points = [jc.circle(pos[1]+offsets[1],2*centre[1]-(pos[0]+offsets[0]),0,'rgba(128,128,128,0.5)',1) for each (pos in pos_adj)];
+    for (i = 0; i < pos_adj.length; i++) {
+      pos = pos_adj[i];
+      points[i] = jc.circle(pos[1] + offsets[1], 2 * centre[1] - (pos[0] + offsets[0]), 0, 'rgba(128, 128, 128, 0.5)', 1);
+    }
+    //points = [jc.circle(pos[1]+offsets[1],2*centre[1]-(pos[0]+offsets[0]),0,'rgba(128,128,128,0.5)',1) for each (pos in pos_adj)];
     // start
     running = true;
     set_day(0);
